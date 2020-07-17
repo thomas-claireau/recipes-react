@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Header from '../Header/Header';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -25,17 +26,24 @@ function Footer() {
 	);
 }
 
-export default function Site({ children }) {
+export default function Site({ children, className }) {
 	return (
 		<>
 			<CssBaseline />
 			<Header />
 
 			<section className="container-page-body">
-				<section id="page-body">{children}</section>
+				<section id="page-body" className={className}>
+					{children}
+				</section>
 
 				<Footer />
 			</section>
 		</>
 	);
 }
+
+Site.propTypes = {
+	children: PropTypes.node.isRequired,
+	className: PropTypes.string.isRequired,
+};

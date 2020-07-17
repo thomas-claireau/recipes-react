@@ -14,10 +14,16 @@ ReactDOM.render(
 		<Router>
 			<Switch>
 				<Route exact path="/recettes/" component={Recettes} />
-				<Route path={`/recettes/:id`} render={(props) => <Recette {...props} />} />
+				<Route
+					path={`/recettes/:id`}
+					render={(props) => <Recette className="recipe" {...props} />}
+				/>
 				<Route exact path="/" component={App} />
 				<Route exact path="/ingredients/" component={Ingredients} />
-				<Route path={`/ingredients/:id`} render={(props) => <Ingredient {...props} />} />
+				<Route
+					path={`/ingredients/:id`}
+					render={(props) => <Ingredient className="ingredient" {...props} />}
+				/>
 				<Route path="*">
 					<Redirect to="/" />
 				</Route>
