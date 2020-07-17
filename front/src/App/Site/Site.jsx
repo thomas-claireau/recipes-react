@@ -6,6 +6,8 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 
+import './Site.scss';
+
 function Footer() {
 	return (
 		<footer>
@@ -29,9 +31,11 @@ export default function Site({ children }) {
 			<CssBaseline />
 			<Header />
 
-			{children}
+			<section className="container-page-body">
+				<section id="page-body">{children}</section>
 
-			<Footer />
+				<Footer />
+			</section>
 		</>
 	);
 }

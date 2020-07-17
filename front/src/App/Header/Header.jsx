@@ -50,7 +50,7 @@ export default function Header() {
 						noWrap
 						className={classes.toolbarTitle}
 					>
-						Company name
+						Recettes React
 					</Link>
 					<nav>
 						<Link

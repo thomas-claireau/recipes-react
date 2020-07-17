@@ -10,9 +10,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { apiFetch } from '../../utils';
 
+import './Login.scss';
+
 const useStyles = makeStyles((theme) => ({
 	paper: {
-		marginTop: theme.spacing(8),
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center',
@@ -56,7 +57,7 @@ export default function Login({ onConnect }) {
 	};
 
 	return (
-		<Container component="main" maxWidth="xs">
+		<Container className="login" component="main" maxWidth="xs">
 			<div className={classes.paper}>
 				<Avatar className={classes.avatar}>
 					<LockOutlinedIcon />

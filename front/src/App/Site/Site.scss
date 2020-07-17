@@ -1,0 +1,11 @@
+#root .container-page-body {
+	--headerHeight: 65px; // height + 1px
+	width: 95%;
+	height: calc(100% - var(--headerHeight));
+	padding: 40px 0;
+	margin: auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: column;
+}
