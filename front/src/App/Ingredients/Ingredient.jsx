@@ -1,5 +1,6 @@
 import React from 'react';
+import Site from '../Site/Site';
 
 export default function Ingredient() {
-	return <div>Ingredient</div>;
+	return <Site>Ingredient</Site>;
 }
