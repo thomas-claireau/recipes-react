@@ -1,9 +1,7 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -45,43 +43,33 @@ export default function Menu() {
 			<CssBaseline />
 			<AppBar position="static" color="default" elevation={0} className={classes.appBar}>
 				<Toolbar className={classes.toolbar}>
-					<Typography
+					<Link
+						href="/"
 						variant="h6"
 						color="inherit"
 						noWrap
 						className={classes.toolbarTitle}
 					>
 						Company name
-					</Typography>
+					</Link>
 					<nav>
 						<Link
 							variant="button"
 							color="textPrimary"
-							href="#"
+							href="/recettes/"
 							className={classes.link}
 						>
-							Features
+							Recettes
 						</Link>
 						<Link
 							variant="button"
 							color="textPrimary"
-							href="#"
+							href="/ingredients/"
 							className={classes.link}
 						>
-							Enterprise
-						</Link>
-						<Link
-							variant="button"
-							color="textPrimary"
-							href="#"
-							className={classes.link}
-						>
-							Support
+							Ingrédients
 						</Link>
 					</nav>
-					<Button href="#" color="primary" variant="outlined" className={classes.link}>
-						Login
-					</Button>
 				</Toolbar>
 			</AppBar>
 		</React.Fragment>

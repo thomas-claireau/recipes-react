@@ -1,29 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
+import './App.scss';
 import { apiFetch } from './utils';
 
-import Login from './App/Login';
-import Site from './App/Site';
-import Loading from './App/Loading';
+import Login from './App/Login/Login';
+import Site from './App/Site/Site';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 function App() {
 	const [user, setUser] = useState(null);
-	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		apiFetch('/me').then(setUser).then(setLoading(false));
+		apiFetch('/me')
+			.then(setUser)
+			.catch(() => setUser(false));
 	}, []);
+
+	if (user === null) return null;
 
 	return (
 		<React.Fragment>
 			<CssBaseline />
-			{loading ? (
-				<Loading />
-			) : (
-				<div className="App">{user ? <Site /> : <Login onConnect={setUser} />}</div>
-			)}
+			<div className="App">{user ? <Site /> : <Login onConnect={setUser} />}</div>
 		</React.Fragment>
 	);
 }
