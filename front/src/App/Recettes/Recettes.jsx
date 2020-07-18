@@ -26,9 +26,6 @@ export default function Recettes() {
 							<Link href={recipe.id}>
 								<div className="title">{recipe.title}</div>
 								<div className="description">{recipe.short}</div>
-								<div className="update">
-									<SVG src={require('./edit.svg')} />
-								</div>
 							</Link>
 						</li>
 					);

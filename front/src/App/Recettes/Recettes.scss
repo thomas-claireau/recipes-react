@@ -34,41 +34,6 @@
 			.description {
 				margin-bottom: 10px;
 			}
-
-			.update {
-				width: 40px;
-				height: 40px;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				background-color: #000;
-				border: 2px solid transparent;
-				border-radius: 100%;
-				transition: all 0.3s ease-in-out;
-
-				&:hover {
-					background-color: transparent;
-					border-color: #000;
-					transition: all 0.3s ease-in-out;
-
-					svg {
-						g path {
-							fill: #000;
-							transition: all 0.3s ease-in-out;
-						}
-					}
-				}
-
-				svg {
-					width: 60%;
-					height: 60%;
-
-					g path {
-						fill: #fff;
-						transition: all 0.3s ease-in-out;
-					}
-				}
-			}
 		}
 	}
 }
