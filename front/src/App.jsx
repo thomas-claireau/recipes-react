@@ -18,7 +18,7 @@ function App() {
 
 	return (
 		<React.Fragment>
-			<>{user ? <Site>accueil</Site> : <Login onConnect={setUser} />}</>
+			<>{user ? <Site className="home">accueil</Site> : <Login onConnect={setUser} />}</>
 		</React.Fragment>
 	);
 }
