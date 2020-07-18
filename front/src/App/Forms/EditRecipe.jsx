@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -23,13 +23,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function EditRecipes({ recipe }) {
-	const { title, short, content, ingredients } = recipe;
+	const { id, title, short, content, ingredients } = recipe;
+	const [loading, setLoading] = useState(false);
 
 	const classes = useStyles();
 
 	const handleSubmit = function (e) {
 		e.preventDefault();
-		console.log(e.target);
+
+		const data = new FormData(e.target);
+
+		apiFetch(`/recipes/${id}`, {
+			method: 'PUT',
+			body: data,
+		});
 	};
 
 	return (
@@ -39,21 +46,30 @@ export default function EditRecipes({ recipe }) {
 				<span>{title}</span>
 			</h2>
 			<form className={classes.root} onSubmit={handleSubmit}>
-				<TextField id="title" label="Titre" placeholder={title} defaultValue={title} />
+				<TextField
+					id="title"
+					name="title"
+					label="Titre"
+					placeholder={title}
+					defaultValue={title}
+				/>
 				<TextField
 					id="short"
+					name="short"
 					label="Courte description"
 					placeholder={short}
 					defaultValue={short}
 				/>
 				<TextField
 					id="content"
+					name="content"
 					label="Contenu de la recette"
 					placeholder="Rentrez ici le contenu de la recette"
 					defaultValue={content}
 					multiline={true}
 				/>
 				<Select
+					name="ingredients"
 					list={apiFetch('/ingredients')}
 					data={recipe.ingredients.map((item) => item.title)}
 				/>
@@ -63,6 +79,7 @@ export default function EditRecipes({ recipe }) {
 					variant="contained"
 					color="primary"
 					className={classes.submit}
+					disabled={loading}
 				>
 					Editer la recette
 				</Button>

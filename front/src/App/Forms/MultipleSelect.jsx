@@ -33,7 +33,7 @@ const MenuProps = {
 	},
 };
 
-export default function MultipleSelect({ list, data }) {
+export default function MultipleSelect({ list, data, name }) {
 	const classes = useStyles();
 	const [state, setState] = React.useState(null);
 	const [items, setItems] = React.useState(data);
@@ -55,7 +55,8 @@ export default function MultipleSelect({ list, data }) {
 			<InputLabel id="demo-mutiple-chip-label">Ingredients</InputLabel>
 			<Select
 				labelId="demo-mutiple-chip-label"
-				id="demo-mutiple-chip"
+				id={name}
+				name={name}
 				multiple
 				value={items}
 				onChange={handleChange}
