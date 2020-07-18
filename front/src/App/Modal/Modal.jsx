@@ -1,12 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 
 import './Modal.scss';
-
-function rand() {
-	return Math.round(Math.random() * 20) - 10;
-}
 
 function getModalStyle() {
 	const top = 50;
@@ -63,3 +60,8 @@ export default function MuiModal({ labelButton, children }) {
 		</div>
 	);
 }
+
+MuiModal.propTypes = {
+	labelButton: PropTypes.object.isRequired,
+	children: PropTypes.node.isRequired,
+};

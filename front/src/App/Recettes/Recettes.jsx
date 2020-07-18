@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Site from '../Site/Site';
-import SVG from 'react-inlinesvg';
 
 import Link from '@material-ui/core/Link';
 

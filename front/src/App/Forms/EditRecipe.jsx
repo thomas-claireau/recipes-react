@@ -23,12 +23,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function EditRecipes({ recipe }) {
-	const { id, title, short, content, ingredients } = recipe;
+	const { id, title, short, content } = recipe;
 	const [loading, setLoading] = useState(false);
 
 	const classes = useStyles();
 
 	const handleSubmit = function (e) {
+		setLoading(true);
 		e.preventDefault();
 
 		const data = new FormData(e.target);
@@ -36,7 +37,7 @@ export default function EditRecipes({ recipe }) {
 		apiFetch(`/recipes/${id}`, {
 			method: 'PUT',
 			body: data,
-		});
+		}).finally(setLoading(false));
 	};
 
 	return (

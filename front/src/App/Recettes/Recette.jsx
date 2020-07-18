@@ -61,6 +61,8 @@ export default function Recette() {
 								</div>
 							);
 						}
+
+						return null;
 					})}
 				</div>
 			</div>

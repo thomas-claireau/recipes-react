@@ -1,5 +1,6 @@
 import React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -46,7 +47,7 @@ export default function MultipleSelect({ list, data, name }) {
 		list.then((data) => {
 			setState(data.map((item) => item.title));
 		});
-	}, []);
+	}, [list]);
 
 	if (state === null) return null;
 
@@ -79,3 +80,9 @@ export default function MultipleSelect({ list, data, name }) {
 		</div>
 	);
 }
+
+MultipleSelect.propTypes = {
+	list: PropTypes.object.isRequired,
+	data: PropTypes.array.isRequired,
+	name: PropTypes.string.isRequired,
+};
