@@ -1,0 +1,17 @@
+.edit-recipes {
+	h2 {
+		display: flex;
+		justify-content: flex-start;
+		align-items: flex-start;
+		flex-direction: column;
+		font-size: 40px;
+		line-height: 35px;
+
+		span {
+			font-size: 20px;
+			line-height: 17px;
+			font-weight: 300;
+			margin-top: 10px;
+		}
+	}
+}

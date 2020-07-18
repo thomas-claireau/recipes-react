@@ -1,0 +1,104 @@
+@import '../../vars';
+
+#root .recipe {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+
+	@media screen and (max-width: $break-tablet) {
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: flex-start;
+	}
+
+	.left {
+		.title {
+			display: flex;
+			justify-content: flex-start;
+			align-items: flex-start;
+			flex-direction: column;
+
+			h1 {
+				display: flex;
+				justify-content: flex-start;
+				align-items: center;
+				font-size: 60px;
+				line-height: 60px;
+				margin-bottom: 5px;
+
+				@media screen and (max-width: $break-small) {
+					font-size: 40px;
+					line-height: 40px;
+				}
+			}
+
+			.date {
+				display: flex;
+				justify-content: flex-start;
+				align-items: flex-start;
+				flex-direction: column;
+				margin-bottom: 40px;
+
+				span {
+					font-style: italic;
+				}
+			}
+
+			.short {
+				font-size: 20px;
+				color: rgb(99, 99, 99);
+				font-weight: 300;
+				margin-bottom: 50px;
+			}
+		}
+
+		.content {
+			display: flex;
+			justify-content: flex-start;
+			align-items: flex-start;
+			width: 80%;
+
+			@media screen and (max-width: $break-medium) {
+				width: 100%;
+			}
+
+			svg {
+				min-width: 50px;
+				width: 50px;
+				height: 50px;
+				margin-right: 20px;
+			}
+		}
+	}
+
+	.right {
+		min-width: 300px;
+
+		@media screen and (max-width: $break-medium) {
+			margin-top: 30px;
+		}
+
+		.ingredients {
+			.ingredient {
+				display: flex;
+				justify-content: flex-start;
+				align-items: center;
+				font-size: 15px;
+				color: #a2a2a2;
+				font-weight: 300;
+				font-style: italic;
+
+				svg {
+					min-width: 40px;
+					width: 40px;
+					height: 40px;
+					margin-right: 20px;
+
+					g path {
+						fill: #a2a2a2;
+					}
+				}
+			}
+		}
+	}
+}

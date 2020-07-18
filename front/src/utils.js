@@ -23,3 +23,10 @@ export async function apiFetch(endpoint, options = {}) {
 		throw new ApiErrors(responseData.errors);
 	}
 }
+
+export function setDate(date) {
+	return {
+		date: date.toLocaleDateString(),
+		time: date.toLocaleTimeString(),
+	};
+}

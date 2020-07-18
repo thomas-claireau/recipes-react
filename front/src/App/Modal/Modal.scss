@@ -1,0 +1,30 @@
+.modal {
+	button {
+		min-width: 60px;
+		width: 60px;
+		height: 60px;
+		margin-left: 20px;
+		-webkit-appearance: none;
+		border: 3px solid transparent;
+		border-radius: 100%;
+		background-color: #e4e4e4;
+		cursor: pointer;
+		transition: all 0.3s ease-in-out;
+
+		&:hover,
+		&:focus {
+			outline: none;
+		}
+
+		&:hover {
+			background-color: transparent;
+			border-color: #e4e4e4;
+			transition: all 0.3s ease-in-out;
+		}
+
+		svg {
+			width: 70%;
+			height: 70%;
+		}
+	}
+}
