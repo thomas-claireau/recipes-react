@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import SVG from 'react-inlinesvg';
 
@@ -14,12 +14,23 @@ import './Recette.scss';
 export default function Recette() {
 	const params = useParams();
 	const [recipe, setRecipe] = useState(null);
+	const [login, setLogin] = useState(true);
 
 	useEffect(() => {
-		apiFetch(`/recipes/${params['id']}`).then((recipe) => setRecipe(recipe));
+		apiFetch(`/recipes/${params['id']}`)
+			.then((recipe) => setRecipe(recipe))
+			.catch((e) => {
+				if (e.errors.code == 401) setLogin(false);
+
+				console.error(e.errors.message);
+			});
 	}, [params]);
 
-	if (recipe === null) return null;
+	if (login) {
+		if (recipe === null) return null;
+	} else {
+		return <Redirect to="/" />;
+	}
 
 	const { title, short, content, ingredients } = recipe;
 	let { created_at, updated_at } = recipe;

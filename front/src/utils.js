@@ -20,9 +20,13 @@ export async function apiFetch(endpoint, options = {}) {
 	if (response.ok) {
 		return responseData;
 	} else {
-		if (responseData.errors) throw new ApiErrors(responseData.errors);
+		if (responseData.errors)
+			throw new ApiErrors({
+				message: responseData.errors[0].message,
+				code: response.status,
+			});
 
-		throw new ApiErrors(responseData.message);
+		throw new ApiErrors({ message: responseData.message, code: response.status });
 	}
 }
 

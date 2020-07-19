@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useReducer } from 'react';
+import { Redirect } from 'react-router-dom';
 import Site from '../Site/Site';
 import Ingredient from './Ingredient';
 
@@ -27,16 +28,25 @@ export default function Ingredients() {
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(null);
 	const [errorAdd, setErrorAdd] = useState(null);
+	const [login, setLogin] = useState(true);
 
 	const [ingredients, dispatch] = useReducer(reducer, null);
 
 	useEffect(() => {
-		apiFetch('/ingredients').then((ingredients) =>
-			dispatch({ type: 'load', payload: ingredients })
-		);
+		apiFetch('/ingredients')
+			.then((ingredients) => dispatch({ type: 'load', payload: ingredients }))
+			.catch((e) => {
+				if (e.errors.code == 401) setLogin(false);
+
+				console.error(e.errors.message);
+			});
 	}, []);
 
-	if (ingredients === null) return 'chargement';
+	if (login) {
+		if (ingredients === null) return null;
+	} else {
+		return <Redirect to="/" />;
+	}
 
 	const handleError = function (error) {
 		if (error) setError(error);
