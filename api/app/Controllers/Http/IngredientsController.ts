@@ -4,7 +4,7 @@ import IngredientValidator from 'App/Validators/IngredientValidator';
 
 export default class IngredientsController {
 	async index() {
-		return Ingredient.all();
+		return Ingredient.query().orderBy('id', 'asc');
 	}
 
 	async read({ params }: HttpContextContract) {
