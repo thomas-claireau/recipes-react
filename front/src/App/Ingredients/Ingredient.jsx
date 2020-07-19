@@ -13,20 +13,7 @@ export default function Ingredient({ ingredient, handleAction, handleError }) {
 
 	const handleSubmit = function (e) {
 		e.preventDefault();
-
-		const data = new FormData(e.target);
-
-		if (action === 'update') {
-		} else if (action === 'remove') {
-			apiFetch(`/ingredients/${id}`, { method: 'DELETE' })
-				.then(() => {
-					console.log('passe');
-					handleAction({ type: action, id });
-				})
-				.catch((e) => {
-					handleError(e.errors);
-				});
-		}
+		handleAction({ type: action, id, data: new FormData(e.target) });
 	};
 
 	return (
@@ -68,5 +55,4 @@ export default function Ingredient({ ingredient, handleAction, handleError }) {
 Ingredient.propTypes = {
 	ingredient: PropTypes.object.isRequired,
 	handleAction: PropTypes.func.isRequired,
-	handleError: PropTypes.func.isRequired,
 };

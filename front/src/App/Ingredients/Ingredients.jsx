@@ -9,6 +9,14 @@ import Alert from '@material-ui/lab/Alert';
 
 import { apiFetch } from '../../utils';
 
+import { add, update, remove } from './store';
+
+const ACTIONS = {
+	add,
+	update,
+	remove,
+};
+
 function reducer(state, action) {
 	switch (action.type) {
 		case 'load':
@@ -16,9 +24,13 @@ function reducer(state, action) {
 		case 'add':
 			return [...state, action.payload];
 		case 'update':
-			return null;
+			return state.map((item) => {
+				if (item == action.payload) return action.payload;
+
+				return item;
+			});
 		case 'remove':
-			return null;
+			return state.filter((item) => item.id !== action.payload);
 		default:
 			throw new Error(`L'action ${action.type} est inconnue`);
 	}
@@ -26,9 +38,8 @@ function reducer(state, action) {
 
 export default function Ingredients() {
 	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState(null);
-	const [errorAdd, setErrorAdd] = useState(null);
 	const [login, setLogin] = useState(true);
+	const [error, setError] = useState(null);
 
 	const [ingredients, dispatch] = useReducer(reducer, null);
 
@@ -48,50 +59,29 @@ export default function Ingredients() {
 		return <Redirect to="/" />;
 	}
 
-	const handleError = function (error) {
-		if (error) setError(error);
+	const handleAction = function (action) {
+		setError(null);
+		ACTIONS[action.type](action, dispatch, setError);
 	};
 
 	const handleSubmit = function (e) {
 		e.preventDefault();
-
-		setLoading(true);
-		setErrorAdd(null);
-
-		const data = new FormData(e.target);
-
-		apiFetch('/ingredients', {
-			method: 'POST',
-			body: data,
-		})
-			.then((ingredient) => dispatch({ type: 'add', payload: ingredient }))
-			.catch((error) => {
-				setErrorAdd(error.errors[0].message);
-			})
-			.finally(() => {
-				setLoading(false);
-			});
-	};
-
-	const handleAction = function ({ type, id }) {
-		console.log(type);
-		console.log(id);
+		handleAction({ type: 'add', data: new FormData(e.target) });
 	};
 
 	return (
 		<Site className="ingredients">
-			{error && <Alert severity="error">{error}</Alert>}
+			{error && error.type !== 'add' && <Alert severity="error">{error.message}</Alert>}
 			{ingredients.map((ingredient) => {
 				return (
 					<Ingredient
 						key={ingredient.id}
 						ingredient={ingredient}
 						handleAction={handleAction}
-						handleError={handleError}
 					/>
 				);
 			})}
-			{errorAdd && <Alert severity="error">{errorAdd}</Alert>}
+			{error && error.type === 'add' && <Alert severity="error">{error.message}</Alert>}
 			<form className="ingredient" onSubmit={handleSubmit}>
 				<TextField
 					id="title"
@@ -112,6 +102,7 @@ export default function Ingredients() {
 					</Button>
 				</div>
 			</form>
+			{error && error.type !== 'add' && <Alert severity="error">{error.message}</Alert>}
 		</Site>
 	);
 }

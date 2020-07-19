@@ -15,6 +15,9 @@ export async function apiFetch(endpoint, options = {}) {
 	};
 
 	const response = await fetch(REACT_APP_API_HOST + endpoint, apiOptions);
+
+	if (response.status == 204) return;
+
 	const responseData = await response.json();
 
 	if (response.ok) {
