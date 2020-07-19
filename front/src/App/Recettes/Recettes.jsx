@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
+import SVG from 'react-inlinesvg';
+
 import Site from '../Site/Site';
 
 import Link from '@material-ui/core/Link';
+import Button from '@material-ui/core/Button';
+import Modal from '../Modal/Modal';
+import AddRecipe from '../Forms/AddRecipe';
 
 import { apiFetch } from '../../utils';
 
@@ -42,6 +47,9 @@ export default function Recettes() {
 					);
 				})}
 			</ul>
+			<Modal labelButton={<SVG src={require('./add.svg')} />}>
+				<AddRecipe />
+			</Modal>
 		</Site>
 	);
 }
