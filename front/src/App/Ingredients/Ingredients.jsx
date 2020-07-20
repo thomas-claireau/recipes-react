@@ -66,7 +66,9 @@ export default function Ingredients() {
 
 	const handleSubmit = function (e) {
 		e.preventDefault();
-		handleAction({ type: 'add', data: new FormData(e.target) });
+		const form = e.target;
+		handleAction({ type: 'add', data: new FormData(form) });
+		form.reset();
 	};
 
 	return (
