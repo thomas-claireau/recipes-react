@@ -9,32 +9,13 @@ import Alert from '@material-ui/lab/Alert';
 
 import { apiFetch } from '../../utils';
 
-import { add, update, remove } from './store';
+import { reducer, add, update, remove } from './store';
 
 const ACTIONS = {
 	add,
 	update,
 	remove,
 };
-
-function reducer(state, action) {
-	switch (action.type) {
-		case 'load':
-			return action.payload;
-		case 'add':
-			return [...state, action.payload];
-		case 'update':
-			return state.map((item) => {
-				if (item == action.payload) return action.payload;
-
-				return item;
-			});
-		case 'remove':
-			return state.filter((item) => item.id !== action.payload);
-		default:
-			throw new Error(`L'action ${action.type} est inconnue`);
-	}
-}
 
 export default function Ingredients() {
 	const [loading, setLoading] = useState(false);
